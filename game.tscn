@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dwl335yordx5k"]
+[gd_scene load_steps=13 format=4 uid="uid://dwl335yordx5k"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_fecwl"]
 [ext_resource type="Texture2D" uid="uid://dw6urgagxp1dr" path="res://art/Arena.png" id="1_odo7y"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://jjnp8w7vp7is" path="res://ball.tscn" id="4_u4xpw"]
 [ext_resource type="AudioStream" uid="uid://l2y840rxvjf6" path="res://art/bounce.mp3" id="8_oiqlr"]
 [ext_resource type="AudioStream" uid="uid://n4tlgfys25vc" path="res://art/score.mp3" id="9_nmqyh"]
+[ext_resource type="AudioStream" uid="uid://bt1cellil3ole" path="res://art/start.mp3" id="9_o8jx8"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_6el0y"]
 action = &"start"
@@ -121,6 +122,10 @@ stream = ExtResource("8_oiqlr")
 
 [node name="ScoreSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_nmqyh")
+
+[node name="StartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_o8jx8")
+volume_db = 5.0
 
 [connection signal="bounce" from="Ball" to="." method="_on_ball_bounce"]
 [connection signal="score" from="Ball" to="." method="_on_ball_score"]
