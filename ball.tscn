@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://jjnp8w7vp7is"]
+
+[ext_resource type="Texture2D" uid="uid://crp2uf5bt1ac3" path="res://art/Ball.png" id="1_lp436"]
+[ext_resource type="Script" path="res://ball.gd" id="1_stink"]
+
+[sub_resource type="Curve" id="Curve_udy0a"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.235741, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_yin22"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ww1se"]
+radius = 8.0
+
+[node name="Ball" type="CharacterBody2D"]
+script = ExtResource("1_stink")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 100
+emission_shape = 3
+emission_rect_extents = Vector2(5, 5)
+gravity = Vector2(0, 0)
+angle_min = -45.0
+angle_max = 45.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_udy0a")
+color_ramp = SubResource("Gradient_yin22")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lp436")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ww1se")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
